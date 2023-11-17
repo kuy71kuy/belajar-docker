@@ -8,5 +8,5 @@ import (
 func main() {
 	config.Init()
 	e := route.New()
-	e.Logger.Fatal(e.Start(":8000"))
+	e.Logger.Fatal(e.Start(":8142"))
 }

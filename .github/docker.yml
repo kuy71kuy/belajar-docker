@@ -27,7 +27,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/image-docker:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/image-bdocker:latest
       -
         name: connect ssh
         uses: appleboy/ssh-action@v0.1.9
@@ -39,5 +39,5 @@ jobs:
           script: |
             docker stop ${{ secrets.CNAME }}
             docker rm ${{ secrets.CNAME }}
-            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/image-docker
-            docker run --name ${{ secrets.CNAME }} -p 8142:8142 -d -e DB_HOST=${{secrets.DB_HOST}} -e DB_PORT=3306 -e DB_USERNAME=${{secrets.DB_USERNAME}} -e DB_PORT=${{secrets.DB_PORT}} -e DB_NAME=${{secrets.DB_NAME}} -e DB_PASSWORD=${{secrets.DB_PASSWORD}} -e SECRET_JWT=${{secrets.JWT}} -e SERVER=8080 ${{ secrets.DOCKERHUB_USERNAME }}/image-docker
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/image-bdocker
+            docker run --name ${{ secrets.CNAME }} -p 8142:8142 -d -e DB_HOST=${{secrets.DB_HOST}} -e DB_PORT=3306 -e DB_USERNAME=${{secrets.DB_USERNAME}} -e DB_PORT=${{secrets.DB_PORT}} -e DB_NAME=${{secrets.DB_NAME}} -e DB_PASSWORD=${{secrets.DB_PASSWORD}} -e SECRET_JWT=${{secrets.JWT}} -e SERVER=8080 ${{ secrets.DOCKERHUB_USERNAME }}/image-bdocker
