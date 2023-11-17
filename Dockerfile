@@ -1,15 +1,11 @@
-FROM golang:1.21.0-alpine
+FROM golang:1.21-alpine
 
-WORKDIR /app
+COPY . /bdocker
 
-COPY go.mod ./
-COPY go.sum ./
-RUN go mod download
+WORKDIR /bdocker
 
-COPY . .
+RUN go mod tidy
 
-RUN go build -o main.app .
+RUN go build -o bdocker .
 
-EXPOSE 8000
-
-CMD ["/app/main.app"]
+CMD ["/bdocker/bdocker"]
